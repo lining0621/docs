@@ -43,8 +43,8 @@ docker-compose --version
 echo "运行测试容器hello-world"
 docker run library/hello-world
 
-read -p "是否启动portainer服务y/N: " portainer_flag
-if [ [$portainer_flag == "y" ] ] ; then 
+read -p "是否启动portainer服务y/N: " portainer
+if [ [$portainer == "y" ] ] ; then 
   PORTAINER_PORT=49000
   PORTAINER_HOME=/software/docker/portainer
   PORTAINER_CONTAINER_NAME=base-01-portainer
@@ -56,13 +56,13 @@ if [ [$portainer_flag == "y" ] ] ; then
 fi
 
 # 部署MySQL
-read -p "是否启动MySQL服务y/N: " mysql_flag
-if [ [$mysql_flag == "y" ] ] ; then 
+read -p "是否启动MySQL服务y/N: " mysql
+if [ [$mysql == "y" ] ] ; then 
   MYSQL_HOME=/software/docker/mysql8/data
   MYSQL_CONTAINER_NAME=base-02-mysql
   MYSQL_PORT=43306
-	echo "正在启动MySQL.............."
   mkdir -p $MYSQL_HOME
+  echo "正在启动MySQL.............."
   docker run -d --restart=always --name $MYSQL_CONTAINER_NAME -p $MYSQL_PORT:3306 -v $MYSQL_HOME:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1qaz@WSX3edc mysql:latest 
   echo "开户远程访问"
   echo "docker exec -it base-02-mysql"
