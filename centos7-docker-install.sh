@@ -8,7 +8,7 @@
 #Description： Annotated script
 #********************************************************************
 
-echo "卸载旧版本docker..........."
+echo -e "\033[41;37m卸载旧版本docker...........\033[0m"
 yum remove -y docker docker-client docker-client-latest docker-common docker-latest 
 yum remove -y docker-latest-logrotate docker-logrotate docker-engine
 yum remove -y containerd.io.x86_64
@@ -20,7 +20,7 @@ yum clean headers  #清理/var/cache/yum的headers清理
 yum clean packages #清理/var/cache/yum下的软件包
 yum clean metadata
 
-echo "开始安装docker............."
+echo -e "\033[41;37m开始安装docker\033[0m"
 cd pkg
 rpm -Uvh *.rpm --nodeps --force
 cd ..
@@ -28,23 +28,23 @@ rpm -Uvh container-selinux-*.noarch.rpm
 rpm -Uvh containerd.io-1.4.4-3.1.el7.x86_64.rpm
 rpm -Uvh docker-ce-*.x86_64.rpm
 
-echo "docker安装完成，服务启动中........"
+echo -e "\033[41;37mdocker安装完成，服务启动中\033[0m"
 systemctl enable docker.service
 systemctl start docker
 systemctl status docker
 
-echo "docker信息如下:"
+echo -e "\033[41;37mdocker信息如下:\033[0m"
 docker version
 docker ps
 cp docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
-echo "运行测试容器hello-world"
+echo -e "\033[41;37m运行测试容器hello-world\033[0m"
 docker run library/hello-world
 
-read -p "是否启动portainer服务y/N: " portainer
-if [ [$portainer == "y" ] ] ; then 
+read -p "\033[41;37m是否启动portainer服务y/N: \033[0m" portainer
+if [ $portainer == "y" ] ; then 
   PORTAINER_PORT=49000
   PORTAINER_HOME=/software/docker/portainer
   PORTAINER_CONTAINER_NAME=base-01-portainer
@@ -57,7 +57,7 @@ fi
 
 # 部署MySQL
 read -p "是否启动MySQL服务y/N: " mysql
-if [ [$mysql == "y" ] ] ; then 
+if [ $mysql == "y" ] ; then 
   MYSQL_HOME=/software/docker/mysql8/data
   MYSQL_CONTAINER_NAME=base-02-mysql
   MYSQL_PORT=43306
