@@ -24,8 +24,8 @@ echo "开始安装docker............."
 cd pkg
 rpm -Uvh *.rpm --nodeps --force
 cd ..
-rpm -Uvh containerd.io-1.4.4-3.1.el7.x86_64.rpm
 rpm -Uvh container-selinux-*.noarch.rpm
+rpm -Uvh containerd.io-1.4.4-3.1.el7.x86_64.rpm
 rpm -Uvh docker-ce-*.x86_64.rpm
 
 echo "docker安装完成，服务启动中........"
