@@ -4,7 +4,7 @@ echo -e "\033[41;37m正在更新系统版本......\033[0m"
 yum update -y
 
 echo -e "\033[41;37m正在安装常用工具......\033[0m"
-yum install -y vim* net-tools unzip wget yum-utils telnet xinetd git
+yum install -y vim* net-tools unzip wget yum-utils telnet xinetd git libssl-dev
 
 echo -e "\033[41;37m正在关闭防火墙........\033[0m"
 systemctl stop firewalld
