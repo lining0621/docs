@@ -52,7 +52,7 @@ if [ $portainer == "y" ] ; then
   echo "正在启动portainer.........."
   docker run -d --restart=always --name $PORTAINER_CONTAINER_NAME -p $PORTAINER_PORT:9000 -v /var/run/docker.sock:/var/run/docker.sock -v $PORTAINER_HOME:/data portainer/portainer:latest
   echo "portainer部署完成"
-  echo "完成portainer启动，请通过: "`ifconfig | grep broadcast | awk "NR==1" | awk -F" " '{print $2}'`":"$PORTAINER_PORT"访问"
+  echo "\033[41;37m完成portainer启动，请通过: "`ifconfig | grep broadcast | awk "NR==2" | awk -F" " '{print $2}'`":"$PORTAINER_PORT"访问\033[0m"
 fi
 
 # 部署MySQL
@@ -64,6 +64,7 @@ if [ $mysql == "y" ] ; then
   mkdir -p $MYSQL_HOME
   echo "正在启动MySQL.............."
   docker run -d --restart=always --name $MYSQL_CONTAINER_NAME -p $MYSQL_PORT:3306 -v $MYSQL_HOME:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1qaz@WSX3edc mysql:latest 
+  echo "\033[41;37m完成MySQL启动，请通过: "`ifconfig | grep broadcast | awk "NR==2" | awk -F" " '{print $2}'`":"$MYSQL_PORT"访问\033[0m"
   echo "开户远程访问"
   echo "docker exec -it base-02-mysql"
   echo "进入mysql"
@@ -76,7 +77,7 @@ if [ $mysql == "y" ] ; then
   echo "exit"
   echo "第一个exit退出mysql"
   echo "第二个exit退出容器的bash"
-  echo "远程连接提示'Public Key Retrieval is not allowed',allowPublicKeyRetrieval=true"
+  echo "远程连接提示'Public Key Retrieval is not allowed',allowPublicKeyRetrieval=true"  
 fi
 
 exit 0
