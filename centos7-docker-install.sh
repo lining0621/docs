@@ -43,7 +43,7 @@ docker-compose --version
 echo -e "\033[41;37m运行测试容器hello-world\033[0m"
 docker run library/hello-world
 
-read -p "\033[41;37m是否启动portainer服务y/N: \033[0m" portainer
+read -p "是否启动portainer服务y/N: " portainer
 if [ $portainer == "y" ] ; then 
   PORTAINER_PORT=49000
   PORTAINER_HOME=/software/docker/portainer
